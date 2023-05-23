@@ -11,8 +11,8 @@ https://raspberrypi.pagesperso-orange.fr/dossiers/23-08.htm
 
 - [x] Dire bonjour et envoyer du json mqtt
   
-  [] Recuperer les donnees et upload sur une BDD
+[] Recuperer les donnees et upload sur une BDD
   
-  [] Faire un graphique avec les infos avec php
+[] Faire un graphique avec les infos avec php
   
-  [] Possibilite de PDF's
+[] Possibilite de PDF's
