@@ -9,16 +9,18 @@ def get_data():
     except:
         print("Erreur lors de la récupération des données")
 
-def connexion_BDD():
-    conn = None
-    try:
-        conn = sqlite3.connect('sqlite.sqlite')
-    except:
-        print(KeyError)
-    print("Connexion réussie")
-    return conn
 
-def insertion_data(conn,data):
+
+conn = None
+
+try:
+    conn = sqlite3.connect('sqlite.sqlite')
+    print("Connexion réussie")
+except:
+    print(KeyError)
+
+
+def insertion_data(data):
     sql = "INSERT INTO data_meteo (date,temperature, pression, humidite) VALUES (?,?,?,?)"
 
     date, temp, press, hum = data # Depaqueter le tuple
@@ -29,4 +31,5 @@ def insertion_data(conn,data):
     print("Données insérées")
     return cur.lastrowid
 
-insertion_data(connexion_BDD(), get_data())
+
+insertion_data(get_data())

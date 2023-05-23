@@ -7,8 +7,6 @@ import sys
 sys.path.insert(1, 'C:\\Users\\zhiri\\Documents\\mo\\BUT\\SAE-23\\traitement_data')
 import mise_en_BDD
 
-
-print(mise_en_BDD.test())
 # --------------------------------------------------
 
 
