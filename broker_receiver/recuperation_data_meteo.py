@@ -7,7 +7,20 @@ text = url.text
 # Get JSON data
 data = json.loads(text)
 
-print(data)
+def get_all():
+    return data
+
+def get_date():
+    return data['properties']['timeseries'][0]['time']
+
+def get_air_temperature():
+    return data['properties']['timeseries'][0]['data']['instant']['details']['air_temperature']
+
+def get_pressure():
+    return data['properties']['timeseries'][0]['data']['instant']['details']['air_pressure_at_sea_level']
+
+def get_humidity():
+    return data['properties']['timeseries'][0]['data']['instant']['details']['relative_humidity']
 
 def get_weather():
-    return data["properties"]["timeseries"][0]["data"]["instant"]["details"]
+    return (get_date(),get_air_temperature(), get_pressure(), get_humidity())

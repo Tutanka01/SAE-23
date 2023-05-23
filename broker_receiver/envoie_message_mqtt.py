@@ -49,14 +49,20 @@ def publish(client):
 
 # --------------------------------------------------
 
-def run():
+try:
     client = connect_mqtt()
+except:
+    print("Failed to connect to MQTT Broker!")
+
+def run():
     client.loop_start()
     publish(client)
 
 # --------------------------------------------------
 
 if __name__ == '__main__':
-    run()
+    for i in range(5):
+        run()
+        time.sleep(10)
 
 # --------------------------------------------------

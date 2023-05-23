@@ -1,9 +1,14 @@
 # python3.6
 
 import random
-
+import json
 from paho.mqtt import client as mqtt_client
+import sys
+sys.path.insert(1, 'C:\\Users\\zhiri\\Documents\\mo\\BUT\\SAE-23\\traitement_data')
+import mise_en_BDD
 
+
+print(mise_en_BDD.test())
 # --------------------------------------------------
 
 
@@ -31,7 +36,8 @@ def connect_mqtt() -> mqtt_client:
 
 def subscribe(client: mqtt_client):
     def on_message(client, userdata, msg):
-        fichier_data = open("C:\\Users\\zhiri\\Documents\\mo\\BUT\\SAE-23\\data_meteo.json", "w")
+        fichier_data = open("C:\\Users\\zhiri\\Documents\\mo\\BUT\\SAE-23\\data_meteo.json", "a") # a = append, qui veut dire ajouter à la fin du fichier
+        
         s = str(msg.payload.decode("utf-8"))
         print(f"Received `{s}` from `{msg.topic}` topic")
         fichier_data.write(s)
@@ -45,6 +51,7 @@ def subscribe(client: mqtt_client):
 def run():
     client = connect_mqtt()
     subscribe(client)
+    mise_en_BDD.insertion_data()
     client.loop_forever()
 
 # --------------------------------------------------
