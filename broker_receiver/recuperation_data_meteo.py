@@ -5,22 +5,24 @@ url = requests.get("https://api.met.no/weatherapi/locationforecast/2.0/compact?l
 text = url.text
 
 # Get JSON data
-data = json.loads(text)
 
-def get_all():
+def get_weather_api():
+    return json.loads(text)
+
+def get_all(data):
     return data
 
-def get_date():
+def get_date(data):
     return data['properties']['timeseries'][0]['time']
 
-def get_air_temperature():
+def get_air_temperature(data):
     return data['properties']['timeseries'][0]['data']['instant']['details']['air_temperature']
 
-def get_pressure():
+def get_pressure(data):
     return data['properties']['timeseries'][0]['data']['instant']['details']['air_pressure_at_sea_level']
 
-def get_humidity():
+def get_humidity(data):
     return data['properties']['timeseries'][0]['data']['instant']['details']['relative_humidity']
 
-def get_weather():
-    return (get_date(),get_air_temperature(), get_pressure(), get_humidity())
+def parse_data(data):
+    return (get_date(data), get_air_temperature(data), get_pressure(data), get_humidity(data))
