@@ -4,7 +4,7 @@ import random
 import json
 from paho.mqtt import client as mqtt_client
 import sys
-sys.path.insert(1, 'C:\\Users\\zhiri\\Documents\\mo\\BUT\\SAE-23\\traitement_data')
+sys.path.insert(1, '/workspaces/SAE-23/traitement_data')
 import mise_en_BDD as mbdd
 
 # --------------------------------------------------
