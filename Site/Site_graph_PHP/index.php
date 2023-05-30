@@ -1,6 +1,6 @@
 <?php
 
-$db = new SQLite3('C:\\Users\\zhiri\\Documents\\mo\\BUT\\SAE-23\\Site\\sqlite.sqlite');
+$db = new SQLite3('sqlite.sqlite');
 $sql = "SELECT date, temperature FROM data_meteo";
 $results = $db->query($sql);
 
@@ -111,6 +111,10 @@ window.onload = function () {
 <div id="chartContainer2" style="width: 45%; height: 300px;display: inline-block;"></div>
 
 <div id="chartContainer3" style="width: 45%; height: 300px;display: inline-block;"></div>
+
+<button onclick="window.print()">Imprimer</button> <!-- Bouton d'impression , possibilite 1-->
+<button onclick = "window.location.href='Site_graph_PHP\\script_pdf.php';"> Imprimer PHP</button>
+
 
 </body>
 </html>
