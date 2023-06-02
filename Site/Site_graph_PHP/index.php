@@ -113,7 +113,7 @@ window.onload = function () {
 <div id="chartContainer3" style="width: 45%; height: 300px;display: inline-block;"></div>
 
 <button onclick="window.print()">Imprimer</button> <!-- Bouton d'impression , possibilite 1-->
-<button onclick = "window.location.href='Site_graph_PHP\\script_pdf.php';"> Imprimer PHP</button>
+<button onclick = "window.location.href='script_pdf.php';"> Imprimer PHP</button>
 
 
 </body>
