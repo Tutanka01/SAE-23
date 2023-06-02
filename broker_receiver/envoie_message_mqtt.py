@@ -9,7 +9,7 @@ from paho.mqtt import client as mqtt_client
 
 # --------------------------------------------------
 
-data = recuperation_data_meteo.get_weather()
+data = recuperation_data_meteo.get_weather_api()
 
 
 broker = 'test.mosquitto.org'
