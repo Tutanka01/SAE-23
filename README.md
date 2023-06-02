@@ -13,6 +13,6 @@ https://raspberrypi.pagesperso-orange.fr/dossiers/23-08.htm
   
 - [x] Recuperer les donnees et upload sur une BDD
   
-[] Faire un graphique avec les infos avec php
+- [x] Faire un graphique avec les infos avec php aussi python dynamiquement bien sur
   
-[] Possibilite de PDF's
+[] Possibilite de PDF's (a moitie fait)

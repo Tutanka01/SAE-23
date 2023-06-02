@@ -25,7 +25,7 @@ def parse_data(data):
 conn = None
 
 try:
-    conn = sqlite3.connect('sqlite.sqlite')
+    conn = sqlite3.connect('C:\\Users\\zhiri\\Documents\\mo\\BUT\\SAE-23\\Site\\sqlite.sqlite')
     print("Connexion réussie")
 except:
     print(KeyError)
