@@ -1,7 +1,8 @@
 <?php
 
-$db = new SQLite3('sqlite.sqlite');
-$sql = "SELECT date, temperature FROM data_meteo";
+$db = new SQLite3('/var/www/html/sqlite.sqlite');
+// la date en ascendant
+$sql = "SELECT date, temperature FROM data_meteo ORDER BY date ASC";
 $results = $db->query($sql);
 
 $dataPoints = array();
@@ -11,7 +12,7 @@ while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
     array_push($dataPoints, array("x" => $date, "y" => $temperature));
 }
 //pression
-$sql = "SELECT date, pression FROM data_meteo";
+$sql = "SELECT date, pression FROM data_meteo ORDER BY date ASC";
 $results = $db->query($sql);
 $dataPoints_pression = array();
 while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
@@ -20,7 +21,7 @@ while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
     array_push($dataPoints_pression, array("x" => $date, "y" => $pression));
 }
 //humidite
-$sql = "SELECT date, humidite FROM data_meteo";
+$sql = "SELECT date, humidite FROM data_meteo ORDER BY date ASC";
 $results = $db->query($sql);
 $dataPoints_humidite = array();
 while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
