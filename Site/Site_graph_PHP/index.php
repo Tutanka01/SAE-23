@@ -156,6 +156,7 @@
     </script>
     </head>
     <body>
+        <h1>Graphiques de Temperature/Humidite/Pression</h1>
         <div style="margin: 50px; align-items: center;">
             <div id="chartContainer" style="width: 45%; height: 300px; display: inline-block;"></div>
             <div id="chartContainer2" style="width: 45%; height: 300px; display: inline-block;"></div>
@@ -176,9 +177,9 @@
                     echo '<table>';
                     echo '<tr>';
                     echo '<th>Date</th>';
-                    echo '<th>Temperature</th>';
-                    echo '<th>Humidite</th>';
-                    echo '<th>Pression</th>';
+                    echo '<th>Temperature (°C)</th>';
+                    echo '<th>Humidite (%)</th>';
+                    echo '<th>Pression (hpa)</th>';
                     echo '</tr>';
                     echo '<tr>';
                     echo '<td>' . $formattedDate . '</td>';
