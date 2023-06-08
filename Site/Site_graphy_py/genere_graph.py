@@ -5,13 +5,13 @@ import datetime as dt
 import time
 
 try:
-    conn = sqlite3.connect('sqlite.sqlite')  # On met le path qui dépend du PC
+    conn = sqlite3.connect('C:\\Users\\zhiri\\Documents\\mo\\BUT\\SAE-23\\Site\\sqlite.sqlite') # On met le path qui depend du PC
     print("Connexion réussie")
 except:
     print("Erreur de connexion à la base de données")
 
 def get_data():
-    sql = "SELECT * FROM data_meteo"
+    sql = "SELECT * FROM data_meteo ORDER BY date ASC"
     cur = conn.cursor()
     cur.execute(sql)
     rows = cur.fetchall()
@@ -29,14 +29,9 @@ def parse_data_sql(data):
         x[i] = dt.datetime.strptime(x[i], '%Y-%m-%dT%H:%M:%SZ')
     return (x, y)
 
-while True:
-    # plotting
-    plt.plot(parse_data_sql(get_data())[0], parse_data_sql(get_data())[1])
-    plt.xlabel('Date')
-    plt.xticks(rotation=45, size=7)
-    plt.ylabel('Température')
-    plt.title('Température en fonction du temps')
-    plt.savefig('graph.png')
-    plt.close()
-    print("Graphique généré")
-    time.sleep(10)
+
+plt.ylabel('Température')
+plt.title('Température en fonction du temps')
+plt.savefig("C:\\Users\\zhiri\\Documents\\mo\\BUT\\SAE-23\\Site\\Site_graphy_py\\graph.png")
+print("Graphique généré")
+
