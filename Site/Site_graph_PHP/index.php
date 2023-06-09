@@ -160,9 +160,12 @@
         <div style="margin: 50px; align-items: center;">
             <div id="chartContainer" style="width: 45%; height: 300px; display: inline-block;"></div>
             <div id="chartContainer2" style="width: 45%; height: 300px; display: inline-block;"></div>
-            <div id="chartContainer3" style="width: 45%; height: 300px; display: inline-block;"></div>
-
-            <button onclick="window.print()">Imprimer</button> <!-- Bouton d'impression, possibilité 1 -->
+            <div style="display:flex; justify-content:center; align-items:center;">    
+                <div id="chartContainer3" style="width: 45%; height: 300px; display: inline-block;"></div>
+            </div>
+            <div style="display:flex; justify-content:center; align-items:center;">  
+                <button onclick="window.print()">Imprimer</button> <!-- Bouton d'impression, possibilité 1 -->
+            </div>
 
             <?php
                 // Lister par date la temperature l'humidite et la pression
@@ -197,6 +200,6 @@
                     $counter++;
                 }
             ?>
-        </div>
+        </style=>
     </body>
 </html>
