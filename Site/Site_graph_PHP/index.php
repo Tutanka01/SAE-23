@@ -1,4 +1,36 @@
 <?php
+
+if (isset($_POST['date1']) && isset($_POST['date2'])) {
+    $date = $_POST['date1'];
+    $date2 = $_POST['date2'];
+    // Connexion à la base de données SQLite
+    $db = new SQLite3('/var/www/html/sqlite.sqlite');
+    // temperature
+    $result = $db->query("SELECT * FROM data_meteo WHERE date BETWEEN '$date' AND '$date2' ORDER BY date ASC");
+    $dataPoints = array();
+    while ($product = $result->fetchArray()) {
+        $timestamp = strtotime($product['date']); // Convertir la date en timestamp
+        $formattedDate = date('d/m/Y H:i', $timestamp); // Convertir le timestamp en format lisible
+        array_push($dataPoints, array('label' => $formattedDate, 'y' => $product['temperature']));
+    }
+    //  humidite
+    $result = $db->query("SELECT * FROM data_meteo WHERE date BETWEEN '$date' AND '$date2' ORDER BY date ASC");
+    $dataPoints2 = array();
+    while ($product = $result->fetchArray()) {
+        $timestamp = strtotime($product['date']); // Convertir la date en timestamp
+        $formattedDate = date('d/m/Y H:i', $timestamp); // Convertir le timestamp en format lisible
+        array_push($dataPoints2, array('label' => $formattedDate, 'y' => $product['humidite']));
+    }
+    // pression
+    $result = $db->query("SELECT * FROM data_meteo WHERE date BETWEEN '$date' AND '$date2' ORDER BY date ASC");
+    $dataPoints3 = array();
+    while ($product = $result->fetchArray()) {
+        $timestamp = strtotime($product['date']); // Convertir la date en timestamp
+        $formattedDate = date('d/m/Y H:i', $timestamp); // Convertir le timestamp en format lisible
+        array_push($dataPoints3, array('label' => $formattedDate, 'y' => $product['pression']));
+    }
+} else {
+    // Connexion à la base de données SQLite
     $db = new SQLite3('/var/www/html/sqlite.sqlite');
     // temperature
     $result = $db->query('SELECT * FROM data_meteo ORDER BY date ASC');
@@ -23,69 +55,17 @@
         $timestamp = strtotime($product['date']); // Convertir la date en timestamp
         $formattedDate = date('d/m/Y H:i', $timestamp); // Convertir le timestamp en format lisible
         array_push($dataPoints3, array('label' => $formattedDate, 'y' => $product['pression']));
-    }
+    } 
+}
+
 ?>
+
 <!DOCTYPE HTML>
 <html>
     <head>
-    <style>
-            body {
-                background-size: cover;
-            }
-
-            h1 {
-                text-align: center;
-                font-family: Arial, Helvetica, sans-serif;
-                color: #ff9800;
-                font-size: 50px;
-                margin-top: 10px;
-                margin-bottom: 10px;
-            }
-
-            .table-container {
-                display: inline-block;
-                vertical-align: top;
-                margin-right: 20px; /* Espacement entre les tableaux */
-                margin-bottom: 20px; /* Espacement en bas des tableaux */
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-                border-radius: 10px;
-                overflow: hidden;
-            }
-
-            table {
-                width: 100%;
-                color: #333;
-                font-family: Arial, sans-serif;
-                font-size: 14px;
-                text-align: left;
-                border-collapse: collapse;
-            }
-
-            th {
-                background-color: #ff9800;
-                color: #fff;
-                font-weight: bold;
-                padding: 10px;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                border-top: 1px solid #fff;
-                border-bottom: 1px solid #ccc;
-            }
-
-            tr:nth-child(even) td {
-                background-color: #f2f2f2;
-            }
-
-            tr:hover td {
-                background-color: #ffedcc;
-            }
-
-            td {
-                padding: 10px;
-                border-bottom: 1px solid #ccc;
-                font-weight: bold;
-            }
-        </style>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <title>Site Graphique</title>
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
     <script>
         window.onload = () => {
@@ -157,6 +137,20 @@
     </head>
     <body>
         <h1>Graphiques de Temperature/Humidite/Pression</h1>
+
+        <?
+            // Formulaire pour le choix de la date entre 2 dates différentes
+            // Centrer au millueay de la page avec un petit titre
+            echo "<h2 style='text-align:center;'>Choisir une date</h2>";
+            echo "<div style='display:flex; justify-content:center; align-items:center;'>";
+                echo "<form method='post' action='index.php'>";
+                    echo "<input type='date' name='date1'>";
+                    echo "<input type='date' name='date2'>";
+                    echo "<input type='submit' value='Valider'>";
+                echo "</form>";
+            echo "</div>";
+        ?>
+
         <div style="margin: 50px; align-items: center;">
             <div id="chartContainer" style="width: 45%; height: 300px; display: inline-block;"></div>
             <div id="chartContainer2" style="width: 45%; height: 300px; display: inline-block;"></div>
